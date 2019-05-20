@@ -28,13 +28,13 @@ for num in reversed(data[0].split()):
     #print(context)
 
     if tmp_sub != []:
-        tmp_sub = tmp_sub[0][8:]
+        tmp_sub = tmp_sub[-1][8:]
         #print(tmp_sub)
         print(functions.parseEmailHeader(tmp_sub))
 
         c += 1
 
-    if c == 20:
+    if c == 30:
         break
     #print(data[0][1])
 imap.close()
