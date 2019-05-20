@@ -76,15 +76,13 @@ def sendTUI():
 def start():
     functions.makeMenu()
     select = input("> ")
-    while select:
+    while select not in "qQ":
         if select in "sS":
             sendTUI()
         elif select in "lL":
             showMails()
         elif select in "uU":
             updateCredentials()
-        elif select in "qQ":
-            break
         else:
             print("I can't understand this")
         functions.makeMenu()
