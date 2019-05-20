@@ -11,7 +11,9 @@ def showMails():
     mails = getMails(10)
 
     for mail in mails:
-        print(mail)
+        print("*", mail)
+    input("[Press Enter to continue]")
+    print("\n"*5)
     return
 
 
