@@ -18,3 +18,13 @@ def parseEmailHeader(subject="=?utf-8?b?U291bmTigJhuIGxpZ2h0?="):
 
 def deletSpaces(string=""):
     return " ".join(string.split())
+
+def makeMenu():
+    print("|", "⎺" * 42, "|", sep="")
+    print("|", "{:^40}".format("Welcome to this commandline mailclient!"), "|")
+    print("|", "–" * 42, "|", sep="")
+    print("|{:<42}|".format("Choose your option:"))
+    print("|{:<20}".format("[S]end a mail"), "{:>20}|".format("[L]ist 10 newest mails"), sep="")
+    print("|{:<42}|".format("[Q]uit"))
+    print("|", "_" * 42, "|", sep="")
+    return

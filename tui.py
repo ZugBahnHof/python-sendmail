@@ -2,6 +2,7 @@
 from sendmail import send
 from receivemail import getMails
 import re
+import functions
 
 def showMails():
     print("The newest 10 Mails are displayed.")
@@ -40,13 +41,7 @@ def sendTUI():
     return
 
 def start():
-    print("|", "⎺"*42, "|", sep="")
-    print("|", "{:^40}".format("Welcome to this commandline mailclient!"), "|")
-    print("|", "–" * 42, "|", sep="")
-    print("|{:<42}|".format("Choose your option:"))
-    print("|{:<20}".format("[S]end a mail"), "{:>20}|".format("[L]ist 10 newest mails"), sep="")
-    print("|{:<42}|".format("[Q]uit"))
-    print("|", "_" * 42, "|", sep="")
+    functions.makeMenu()
     select = input("> ")
     while select:
         if select in "sS":
@@ -57,6 +52,7 @@ def start():
             break
         else:
             print("I can't understand this")
+        functions.makeMenu()
         select = input("> ")
     print("#"*44)
     print("#{:^42}#".format("Goodbye!"))
