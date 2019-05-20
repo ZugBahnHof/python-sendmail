@@ -18,7 +18,7 @@ def showMails():
 
 
 def sendTUI():
-    print("Welcome to this commandline mailclient!", end="\n\n")
+    print("\n"*5)
     print("Please enter your receiver:")
     receiver = input(">")
     cleaned_receiver = re.match("\S+@\S+.\S+", receiver)
@@ -40,6 +40,7 @@ def sendTUI():
 
     send(addr_to=receiver, subject=subject, message=text)
 
+    print("\n"*5)
     return
 
 def start():
