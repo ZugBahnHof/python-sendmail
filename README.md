@@ -1,4 +1,4 @@
-Go to /usr/bin/ and create a file called e.g. `mail`
+Go to `/usr/bin/` and create a file called e.g. `mail`
 It's content should be following:
 
 ```bash
@@ -14,7 +14,7 @@ Create file `secret_credentials.json` and fill it with following:
   "SERVER": "postoffice.katharineum.de",
   "PORT": "",
   "USER": "",
-  "PASSWORD": "",
+  "PASSWORD": ""
 }
 ```
 
