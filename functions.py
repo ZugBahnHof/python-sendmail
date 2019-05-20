@@ -26,10 +26,11 @@ def changeCredentials(server, port, user, password, file="secret_credentials.jso
     json = jsonenc.encode(data)
 
     print("Opening credential file...")
-    f = open(file)
+    f = open(file, "w")
     f.write(json)
 
     print("Saving...")
+    f.close()
 
     return
 
@@ -45,7 +46,7 @@ def makeMenu():
     print("|", "{:^40}".format("Welcome to this commandline mailclient!"), "|")
     print("|", "–" * 42, "|", sep="")
     print("|{:<42}|".format("Choose your option:"))
-    print("|{:<20}".format("[S]end a mail"), "{:>20}|".format("[L]ist 10 newest mails"), sep="")
-    print("|{:<42}|".format("[Q]uit"))
+    print("|{:<20}".format("[S]end a mail"), "{:>22}|".format("[L]ist 10 newest mails"), sep="")
+    print("|{:<21}{:>21}|".format("[U]pdate credentials","[Q]uit"))
     print("|", "_" * 42, "|", sep="")
     return

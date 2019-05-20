@@ -4,6 +4,36 @@ from receivemail import getMails
 import re
 import functions
 
+def updateCredentials():
+    SERVER, PORT, USER, PASSWORD = functions.parseCredentials()
+
+    print("Change your credentials", end="\n"*2)
+    print("Server [default={}]".format(SERVER))
+    server = input("> ")
+    server = server or SERVER
+    print("Ok")
+
+    print("Port [default={}]".format(PORT))
+    port = input("> ")
+    port = port or PORT
+    print("Ok")
+
+    print("Server [default={}]".format(USER))
+    user = input("> ")
+    user = user or USER
+    print("Ok")
+
+    print("Server [default={}]".format("old password"))
+    password = input("> ")
+    password = password or PASSWORD
+    print("Ok")
+
+    print("Collecting data...")
+
+    functions.changeCredentials(server=server, port=port, user=user, password=password)
+
+    return
+
 def showMails():
     print("The newest 10 Mails are displayed.")
     print("\n"*5)
@@ -51,6 +81,8 @@ def start():
             sendTUI()
         elif select in "lL":
             showMails()
+        elif select in "uU":
+            updateCredentials()
         elif select in "qQ":
             break
         else:
