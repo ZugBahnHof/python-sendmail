@@ -39,5 +39,28 @@ def sendTUI():
 
     return
 
+def start():
+    print("|", "⎺"*42, "|", sep="")
+    print("|", "{:^40}".format("Welcome to this commandline mailclient!"), "|")
+    print("|", "–" * 42, "|", sep="")
+    print("|{:<42}|".format("Choose your option:"))
+    print("|{:<20}".format("[S]end a mail"), "{:>20}|".format("[L]ist 10 newest mails"), sep="")
+    print("|{:<42}|".format("[Q]uit"))
+    print("|", "_" * 42, "|", sep="")
+    select = input("> ")
+    while select:
+        if select in "sS":
+            sendTUI()
+        elif select in "lL":
+            showMails()
+        elif select in "qQ":
+            break
+        else:
+            print("I can't understand this")
+        select = input("> ")
+    print("#"*44)
+    print("#{:^42}#".format("Goodbye!"))
+    print("#"*44)
+
 if __name__ == "__main__":
-    showMails()
+    start()
