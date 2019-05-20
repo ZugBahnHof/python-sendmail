@@ -22,7 +22,7 @@ def send(addr_to="", subject="", message=""):
 
     connection = smtplib.SMTP(host=SERVER, port=PORT)
     connection.starttls()
-    print("Connecting to mailserver...")
+    print("Connecting to {}...".format(SERVER))
     connection.login(USER, PASSWORD)
     print("Sending message...")
     connection.send_message(msg)
