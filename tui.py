@@ -1,6 +1,18 @@
 # Not a real TUI, just a bunch of prints and inputs
 from sendmail import send
+from receivemail import getMails
 import re
+
+def showMails():
+    print("The newest 10 Mails are displayed.")
+    print("\n"*5)
+    print("Your mails are gonna be displayed now...")
+    mails = getMails(10)
+
+    for mail in mails:
+        print(mail)
+    return
+
 
 def sendTUI():
     print("Welcome to this commandline mailclient!", end="\n\n")
@@ -25,5 +37,7 @@ def sendTUI():
 
     send(addr_to=receiver, subject=subject, message=text)
 
+    return
+
 if __name__ == "__main__":
-    sendTUI()
+    showMails()
