@@ -2,7 +2,7 @@
 from sendmail import send
 import re
 
-def start():
+def sendTUI():
     print("Welcome to this commandline mailclient!", end="\n\n")
     print("Please enter your receiver:")
     receiver = input(">")
@@ -26,4 +26,4 @@ def start():
     send(addr_to=receiver, subject=subject, message=text)
 
 if __name__ == "__main__":
-    start()
+    sendTUI()
