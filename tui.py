@@ -3,6 +3,7 @@ from sendmail import send
 from receivemail import getMails
 import re
 import functions
+import getpass
 
 def updateCredentials():
     SERVER, PORT, USER, PASSWORD = functions.parseCredentials()
@@ -24,7 +25,7 @@ def updateCredentials():
     print("Ok")
 
     print("Server [default={}]".format("old password"))
-    password = input("> ")
+    password = getpass.getpass("> ")
     password = password or PASSWORD
     print("Ok")
 
