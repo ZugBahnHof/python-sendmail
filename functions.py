@@ -7,7 +7,7 @@ from email.header import Header, decode_header, make_header
 def parseCredentials(file="secret_credentials.json"):
     jsondec = JSONDecoder()
 
-    text = open(file).read()
+    text = open(file).read() or "{}"
     data = jsondec.decode(text)
     print("Opening credential file...")
 
