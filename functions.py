@@ -15,3 +15,6 @@ def parseCredentials(file="secret_credentials.json"):
 def parseEmailHeader(subject="=?utf-8?b?U291bmTigJhuIGxpZ2h0?="):
     h = make_header(decode_header(subject))
     return str(h)
+
+def deletSpaces(string=""):
+    return " ".join(string.split())

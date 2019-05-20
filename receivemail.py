@@ -1,40 +1,44 @@
 import imaplib
-import pprint
 import functions
 import re
 
-SERVER, PORT, USER, PASSWORD = functions.parseCredentials()
+def getMails(count=20):
+    SERVER, PORT, USER, PASSWORD = functions.parseCredentials()
 
-# connect to host using SSL
-imap = imaplib.IMAP4_SSL(SERVER)
+    # connect to host using SSL
+    imap = imaplib.IMAP4_SSL(SERVER)
 
-## login to server
-imap.login(USER, PASSWORD)
+    ## login to server
+    imap.login(USER, PASSWORD)
 
-imap.select('Inbox')
+    imap.select('Inbox')
 
-tmp, data = imap.search(None, 'ALL')
+    tmp, data = imap.search(None, 'ALL')
 
-sub = re.compile("Subject:.*")
+    sub = re.compile("Subject:.*")
 
-c = 0
+    c = 0
 
-for num in reversed(data[0].split()):
-    tmp, data = imap.fetch(num, '(RFC822)')
-    #print('Message: {0}\n'.format(num))
-    context = data[0][1].decode("utf-8")
-    tmp_sub = sub.findall(context)
+    mails = []
 
-    #print(context)
+    for num in reversed(data[0].split()):
+        tmp, data = imap.fetch(num, '(RFC822)')
+        #print('Message: {0}\n'.format(num))
+        context = data[0][1].decode("utf-8")
+        tmp_sub = sub.findall(context)
 
-    if tmp_sub != []:
-        tmp_sub = tmp_sub[-1][8:]
-        #print(tmp_sub)
-        print(functions.parseEmailHeader(tmp_sub))
+        #print(context)
 
-        c += 1
+        if tmp_sub != []:
+            tmp_sub = tmp_sub[-1][8:]
+            #print(tmp_sub)
+            mails.append(functions.deletSpaces(functions.parseEmailHeader(tmp_sub)))
 
-    if c == 30:
-        break
-    #print(data[0][1])
-imap.close()
+            c += 1
+
+        if c >= count:
+            break
+        #print(data[0][1])
+    imap.close()
+
+    return mails
