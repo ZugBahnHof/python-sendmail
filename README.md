@@ -1,3 +1,9 @@
+## SETUP
+
+
+
+### Executable
+
 Go to `/usr/bin/` and create a file called e.g. `mail`
 It's content should be following:
 
@@ -6,6 +12,9 @@ It's content should be following:
 cd /path/to/this/sendmail/
 python3 tui.py
 ```
+
+### USERNAME and PASSWORD
+Either, you do this via the `Update function` (just run the program and press `u`), or you can do this manually. For this, look at following manual.
 
 Create file `secret_credentials.json` and fill it with following:
 
