@@ -54,3 +54,9 @@ def makeMenu():
 
 def printInGreen(text=""):
     print_formatted_text(HTML('<ansigreen>{text}</ansigreen>'.format(text=text)))
+
+def printInRed(text=""):
+    print_formatted_text(HTML('<ansired>{text}</ansired>'.format(text=text)))
+
+def printInBlue(text=""):
+    print_formatted_text(HTML("<skyblue>{text}</skyblue>".format(text=text)))

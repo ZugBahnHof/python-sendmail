@@ -56,7 +56,8 @@ def sendTUI():
     receiver = input(">")
     cleaned_receiver = re.match("\S+@\S+.\S+", receiver)
     while not cleaned_receiver:
-        print("There was an error while validating your receiver. Please enter your receiver again:")
+        functions.printInRed("There was an error while validating your receiver.")
+        print("Please enter your receiver again:")
         receiver = input(">")
         cleaned_receiver = re.match("\S+@\S+.\S+", receiver)
     print("Please enter your subject:")
@@ -87,12 +88,12 @@ def start():
         elif select in "uU":
             updateCredentials()
         else:
-            print("I can't understand this")
+            functions.printInRed("I can't understand this")
         functions.makeMenu()
         select = input("> ")
-    print("#"*44)
-    print("#{:^42}#".format("Goodbye!"))
-    print("#"*44)
+    functions.printInBlue("#"*44)
+    functions.printInBlue("#{:^42}#".format("Goodbye!"))
+    functions.printInBlue("#"*44)
 
 if __name__ == "__main__":
     start()
