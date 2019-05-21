@@ -27,4 +27,4 @@ def send(addr_to="", subject="", message=""):
     print("Sending message...")
     connection.send_message(msg)
     connection.quit()
-    print("Success")
+    functions.printInGreen("Success")

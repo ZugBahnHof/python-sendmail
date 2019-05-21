@@ -2,6 +2,7 @@ from json.decoder import JSONDecoder
 from json.encoder import JSONEncoder
 #from email.header import decode_header
 from email.header import Header, decode_header, make_header
+from prompt_toolkit import print_formatted_text, HTML
 
 
 def parseCredentials(file="secret_credentials.json"):
@@ -50,3 +51,6 @@ def makeMenu():
     print("|{:<21}{:>21}|".format("[U]pdate credentials","[Q]uit"))
     print("|", "_" * 42, "|", sep="")
     return
+
+def printInGreen(text=""):
+    print_formatted_text(HTML('<ansigreen>{text}</ansigreen>'.format(text=text)))

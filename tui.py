@@ -33,6 +33,8 @@ def updateCredentials():
 
     functions.changeCredentials(server=server, port=port, user=user, password=password)
 
+    functions.printInGreen("Success")
+
     return
 
 def showMails():
