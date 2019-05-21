@@ -8,6 +8,7 @@ import getpass
 def updateCredentials():
     SERVER, PORT, USER, PASSWORD = functions.parseCredentials()
 
+    print("\n"*5)
     print("Change your credentials", end="\n"*2)
     print("Server [default={}]".format(SERVER))
     server = input("> ")
@@ -34,6 +35,7 @@ def updateCredentials():
     functions.changeCredentials(server=server, port=port, user=user, password=password)
 
     functions.printInGreen("Success")
+    print("\n"*5)
 
     return
 
