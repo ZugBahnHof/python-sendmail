@@ -1,6 +1,13 @@
 ## SETUP
 
+### Requirements
 
+Install following global, if you want to use your executable.
+Otherwise you can install it in an virtual environment.
+
+```bash
+pip3 install prompt_toolkit
+```
 
 ### Executable
 
@@ -14,7 +21,8 @@ python3 tui.py
 ```
 
 ### USERNAME and PASSWORD
-Either, you do this via the `Update function` (just run the program and press `u`), or you can do this manually. For this, look at following manual.
+Either, you do this via the `Update function` (just run the program and press `u`)
+or you can do this manually. For this, look at following manual.
 
 Create file `secret_credentials.json` and fill it with following:
 
