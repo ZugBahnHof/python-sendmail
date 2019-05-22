@@ -20,12 +20,12 @@ def updateCredentials():
     port = port or PORT
     print("Ok")
 
-    print("Server [default={}]".format(USER))
+    print("Username [default={}]".format(USER))
     user = input("> ")
     user = user or USER
     print("Ok")
 
-    print("Server [default={}]".format("old password"))
+    print("Password (not displayed) [default={}]".format("previous password"))
     password = getpass.getpass("> ")
     password = password or PASSWORD
     print("Ok")
