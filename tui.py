@@ -12,18 +12,18 @@ def updateCredentials(file_password):
 
     print("\n"*5)
     print("Change your credentials", end="\n"*2)
-    print("Server [default={}]".format(SERVER))
-    server = input("> ")
+    print("Server")
+    server = prompt("> ", default=SERVER)
     server = server or SERVER
     print("Ok")
 
-    print("Port [default={}]".format(PORT))
-    port = input("> ")
+    print("Port")
+    port = prompt("> ", default=PORT)
     port = port or PORT
     print("Ok")
 
-    print("Username [default={}]".format(USER))
-    user = input("> ")
+    print("Username")
+    user = prompt("> ", default=USER)
     user = user or USER
     print("Ok")
 
@@ -68,7 +68,6 @@ def sendTUI(pwd):
     subject = input("> ")
 
     print("Please enter your message content. If you have finished your text press ALT + ENTER:")
-    from prompt_toolkit import prompt
 
     text = prompt('> ', multiline=True,
            prompt_continuation=functions.prompt_continuation)
