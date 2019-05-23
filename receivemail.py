@@ -2,7 +2,7 @@ import imaplib
 import functions
 import re
 
-def getMails(count=20, pwd):
+def getMails(pwd, count=20):
     SERVER, PORT, USER, PASSWORD = functions.parseCredentials(pwd=pwd)
 
     # connect to host using SSL
