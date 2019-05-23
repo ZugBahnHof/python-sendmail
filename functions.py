@@ -13,7 +13,7 @@ def parseCredentials(pwd, file="secret_credentials.json"):
     data = jsondec.decode(text)
     print("Opening credential file...")
 
-    return data.get("SERVER", "example.com"), data.get("PORT", 0), data.get("USER", "admin@example.com"), data.get("PASSWORD", "admin")
+    return data.get("SERVER", "example.com"), data.get("PORT", "0"), data.get("USER", "admin@example.com"), data.get("PASSWORD", "admin")
 
 def changeCredentials(server, port, user, password, pwd, file="secret_credentials.json"):
     jsonenc = JSONEncoder()

@@ -27,8 +27,8 @@ def updateCredentials(file_password):
     user = user or USER
     print("Ok")
 
-    print("Password (not displayed) [default={}]".format("previous password"))
-    password = getpass.getpass("> ")
+    print("Password [default={}]".format("previous password"))
+    password = prompt("> ", is_password=True)
     password = password or PASSWORD
     print("Ok")
 
@@ -73,7 +73,7 @@ def sendTUI(pwd):
 
 def start():
     print("Please enter the password for the mail-client:")
-    pwd = getpass.getpass("> ")
+    pwd = prompt("> ", is_password=True)
     working = False
     while not working:
         try:
