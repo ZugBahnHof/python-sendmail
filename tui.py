@@ -56,20 +56,20 @@ def showMails(pwd):
 def sendTUI(pwd):
     print("\n"*5)
     print("Please enter your receiver:")
-    receiver = input(">")
+    receiver = input("> ")
     cleaned_receiver = re.match("\S+@\S+.\S+", receiver)
     while not cleaned_receiver:
         functions.printInRed("There was an error while validating your receiver.")
         print("Please enter your receiver again:")
-        receiver = input(">")
+        receiver = input("> ")
         cleaned_receiver = re.match("\S+@\S+.\S+", receiver)
     print("Please enter your subject:")
-    subject = input(">")
+    subject = input("> ")
 
     print("Please enter your message content. If you have finished your text type \"!end!\":")
-    text = input(">")
+    text = input("> ")
     while True:
-        curr = input(">")
+        curr = input("> ")
         if curr != "!end!":
             text += curr+"\n"
         else:
