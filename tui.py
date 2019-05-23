@@ -7,6 +7,7 @@ import getpass
 import encryption
 from prompt_toolkit import prompt
 from prompt_toolkit.styles import Style
+import rainbow
 
 default_style = Style.from_dict({
     'rprompt': 'bg:#fff #000',
@@ -97,6 +98,8 @@ def start():
             showMails(pwd=pwd)
         elif select in "uU":
             updateCredentials(pwd)
+        elif select in "rR":
+            rainbow.main()
         else:
             functions.printInRed("I can't understand this")
         functions.makeMenu()
