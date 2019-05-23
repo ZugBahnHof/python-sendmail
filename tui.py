@@ -6,6 +6,11 @@ import functions
 import getpass
 import encryption
 from prompt_toolkit import prompt
+from prompt_toolkit.styles import Style
+
+default_style = Style.from_dict({
+    'rprompt': 'bg:#fff #000',
+})
 
 def updateCredentials(file_password):
     SERVER, PORT, USER, PASSWORD = functions.parseCredentials(pwd=file_password)
@@ -13,17 +18,17 @@ def updateCredentials(file_password):
     print("\n"*5)
     print("Change your credentials", end="\n"*2)
     print("Server")
-    server = prompt("> ", default=SERVER)
+    server = prompt('> ', rprompt="[default={}]".format(SERVER), style=default_style)
     server = server or SERVER
     print("Ok")
 
     print("Port")
-    port = prompt("> ", default=PORT)
+    port = prompt('> ', rprompt="[default={}]".format(PORT), style=default_style)
     port = port or PORT
     print("Ok")
 
     print("Username")
-    user = prompt("> ", default=USER, validator=functions.validateEmail())
+    user = prompt('> ', rprompt="[default={}]".format(USER), style=default_style)
     user = user or USER
     print("Ok")
 
