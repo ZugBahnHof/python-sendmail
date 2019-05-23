@@ -22,18 +22,11 @@ python3 tui.py
 ```
 
 ### USERNAME and PASSWORD
-Either, you do this via the `Update function` (just run the program and press `u`)
-or you can do this manually. For this, look at following manual.
-
-Create file `secret_credentials.json` and fill it with following:
-
-```json
-{ 
-  "SERVER": "postoffice.katharineum.de",
-  "PORT": "",
-  "USER": "",
-  "PASSWORD": ""
-}
+To add your username and password for your email account, as well as the server data,
+run the file `setup.py`. For example:
+```bash
+cd /path/to/this/sendmail/
+python3 setup.py
 ```
 
 If you don't give some of the parameters, it'll use default values.

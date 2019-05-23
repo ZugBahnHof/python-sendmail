@@ -1,14 +1,14 @@
 from json.decoder import JSONDecoder
 from json.encoder import JSONEncoder
-#from email.header import decode_header
-from email.header import Header, decode_header, make_header
+from email.header import decode_header, make_header
 from prompt_toolkit import print_formatted_text, HTML
+import encryption
 
 
 def parseCredentials(file="secret_credentials.json"):
     jsondec = JSONDecoder()
 
-    text = open(file).read() or "{}"
+    text = encryption.decrypt(password="asdf") or "{}"
     data = jsondec.decode(text)
     print("Opening credential file...")
 
@@ -27,11 +27,8 @@ def changeCredentials(server, port, user, password, file="secret_credentials.jso
     json = jsonenc.encode(data)
 
     print("Opening credential file...")
-    f = open(file, "w")
-    f.write(json)
-
+    encryption.encrypt(text=json, password="asdf")
     print("Saving...")
-    f.close()
 
     return
 
