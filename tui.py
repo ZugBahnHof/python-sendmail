@@ -5,8 +5,8 @@ import re
 import functions
 import getpass
 
-def updateCredentials():
-    SERVER, PORT, USER, PASSWORD = functions.parseCredentials()
+def updateCredentials(file_password):
+    SERVER, PORT, USER, PASSWORD = functions.parseCredentials(pwd=file_password)
 
     print("\n"*5)
     print("Change your credentials", end="\n"*2)
@@ -32,7 +32,7 @@ def updateCredentials():
 
     print("Collecting data...")
 
-    functions.changeCredentials(server=server, port=port, user=user, password=password)
+    functions.changeCredentials(server=server, port=port, user=user, password=password, pwd=file_password)
 
     functions.printInGreen("Success")
     print("\n"*5)

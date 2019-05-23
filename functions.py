@@ -5,16 +5,16 @@ from prompt_toolkit import print_formatted_text, HTML
 import encryption
 
 
-def parseCredentials(file="secret_credentials.json"):
+def parseCredentials(pwd, file="secret_credentials.json"):
     jsondec = JSONDecoder()
 
-    text = encryption.decrypt(password="asdf") or "{}"
+    text = encryption.decrypt(password=pwd) or "{}"
     data = jsondec.decode(text)
     print("Opening credential file...")
 
     return data.get("SERVER", "example.com"), data.get("PORT", 0), data.get("USER", "admin@example.com"), data.get("PASSWORD", "admin")
 
-def changeCredentials(server, port, user, password, file="secret_credentials.json"):
+def changeCredentials(server, port, user, password, pwd, file="secret_credentials.json"):
     jsonenc = JSONEncoder()
 
     data = {
@@ -27,7 +27,7 @@ def changeCredentials(server, port, user, password, file="secret_credentials.jso
     json = jsonenc.encode(data)
 
     print("Opening credential file...")
-    encryption.encrypt(text=json, password="asdf")
+    encryption.encrypt(text=json, password=pwd)
     print("Saving...")
 
     return
