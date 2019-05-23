@@ -37,3 +37,5 @@ If you don't give some of the parameters, it'll use default values.
 | PORT      | 0                 |
 | USER      | admin@example.com |
 | PASSWORD  | admin             |
+
+If you have forgotten your password for this mail-client, you have to do the setup again.

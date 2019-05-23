@@ -20,5 +20,5 @@ encryption.encrypt("{}", password_for_mailclient)
 tui.updateCredentials(file_password=password_for_mailclient)
 
 functions.printInBlue("#"*44)
-functions.printInBlue("#{:^42}#".format("You can now start your mailclient!"))
+functions.printInBlue("#{:^42}#".format("You can now start your mail-client!"))
 functions.printInBlue("#"*44)

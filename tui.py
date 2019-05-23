@@ -81,7 +81,7 @@ def sendTUI(pwd):
     return
 
 def start():
-    print("Please enter the password for the mailclient:")
+    print("Please enter the password for the mail-client:")
     pwd = getpass.getpass("> ")
     working = False
     while not working:
