@@ -23,7 +23,7 @@ def updateCredentials(file_password):
     print("Ok")
 
     print("Username")
-    user = prompt("> ", default=USER)
+    user = prompt("> ", default=USER, validator=functions.validateEmail())
     user = user or USER
     print("Ok")
 
