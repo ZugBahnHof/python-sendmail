@@ -7,6 +7,7 @@ Otherwise you can install it in an virtual environment.
 
 ```bash
 pip3 install prompt_toolkit
+pip3 install pyaescrypt
 ```
 
 ### Executable
