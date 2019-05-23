@@ -57,13 +57,7 @@ def showMails(pwd):
 def sendTUI(pwd):
     print("\n"*5)
     print("Please enter your receiver:")
-    receiver = input("> ")
-    cleaned_receiver = re.match("\S+@\S+.\S+", receiver)
-    while not cleaned_receiver:
-        functions.printInRed("There was an error while validating your receiver.")
-        print("Please enter your receiver again:")
-        receiver = input("> ")
-        cleaned_receiver = re.match("\S+@\S+.\S+", receiver)
+    receiver = prompt("> ", validator=functions.validateEmail())
     print("Please enter your subject:")
     subject = input("> ")
 

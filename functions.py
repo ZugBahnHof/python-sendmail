@@ -1,9 +1,10 @@
 from json.decoder import JSONDecoder
 from json.encoder import JSONEncoder
 from email.header import decode_header, make_header
-from prompt_toolkit import print_formatted_text, HTML
+from prompt_toolkit import print_formatted_text, HTML, prompt
+from prompt_toolkit.validation import Validator, ValidationError
 import encryption
-
+import re
 
 def parseCredentials(pwd, file="secret_credentials.json"):
     jsondec = JSONDecoder()
@@ -60,3 +61,12 @@ def printInBlue(text=""):
 
 def prompt_continuation(width, line_number, is_soft_wrap):
     return '> '
+
+class validateEmail(Validator):
+    def validate(self, document):
+        text = document.text
+
+        validation = re.match("\S+@\S+.\S+", text)
+
+        if not validation:
+            raise ValidationError(message="This is not a valid E-Mail adress")
