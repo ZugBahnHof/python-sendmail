@@ -3,14 +3,14 @@ import smtplib
 
 from email.message import EmailMessage
 
-def send(addr_to="", subject="", message=""):
+def send(password, addr_to="", subject="", message=""):
 
     if len(addr_to) > 0 and len(subject) > 0 and len(message) > 0:
         pass
     else:
         raise AttributeError("Receiver, subject and message must be given!")
 
-    SERVER, PORT, USER, PASSWORD = functions.parseCredentials()
+    SERVER, PORT, USER, PASSWORD = functions.parseCredentials(pwd=password)
 
     msg = EmailMessage()
 

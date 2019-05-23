@@ -4,6 +4,7 @@ from receivemail import getMails
 import re
 import functions
 import getpass
+import encryption
 
 def updateCredentials(file_password):
     SERVER, PORT, USER, PASSWORD = functions.parseCredentials(pwd=file_password)
@@ -39,11 +40,11 @@ def updateCredentials(file_password):
 
     return
 
-def showMails():
+def showMails(pwd):
     print("The newest 10 Mails are displayed.")
     print("\n"*5)
     print("Your mails are gonna be displayed now...")
-    mails = getMails(10)
+    mails = getMails(10, pwd=pwd)
 
     for mail in mails:
         print("*", mail)
@@ -52,7 +53,7 @@ def showMails():
     return
 
 
-def sendTUI():
+def sendTUI(pwd):
     print("\n"*5)
     print("Please enter your receiver:")
     receiver = input(">")
@@ -74,21 +75,31 @@ def sendTUI():
         else:
             break
 
-    send(addr_to=receiver, subject=subject, message=text)
+    send(addr_to=receiver, subject=subject, message=text, password=pwd)
 
     print("\n"*5)
     return
 
 def start():
+    print("Please enter the password for the mailclient:")
+    pwd = getpass.getpass("> ")
+    working = False
+    while not working:
+        try:
+            encryption.decrypt(pwd)
+            working = True
+        except:
+            functions.printInRed("Your password was not correct. Please try again!")
+            working = False
     functions.makeMenu()
     select = input("> ")
     while select not in "qQ":
         if select in "sS":
-            sendTUI()
+            sendTUI(pwd=pwd)
         elif select in "lL":
-            showMails()
+            showMails(pwd=pwd)
         elif select in "uU":
-            updateCredentials()
+            updateCredentials(pwd)
         else:
             functions.printInRed("I can't understand this")
         functions.makeMenu()
