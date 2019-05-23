@@ -44,7 +44,7 @@ def showMails(pwd):
     print("The newest 10 Mails are displayed.")
     print("\n"*5)
     print("Your mails are gonna be displayed now...")
-    mails = getMails(10, pwd=pwd)
+    mails = getMails(pwd=pwd, count=10)
 
     for mail in mails:
         print("*", mail)
@@ -90,6 +90,7 @@ def start():
             working = True
         except:
             functions.printInRed("Your password was not correct. Please try again!")
+            pwd = getpass.getpass("> ")
             working = False
     functions.makeMenu()
     select = input("> ")
