@@ -57,3 +57,6 @@ def printInRed(text=""):
 
 def printInBlue(text=""):
     print_formatted_text(HTML("<skyblue>{text}</skyblue>".format(text=text)))
+
+def prompt_continuation(width, line_number, is_soft_wrap):
+    return '> '

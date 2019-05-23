@@ -5,6 +5,7 @@ import re
 import functions
 import getpass
 import encryption
+from prompt_toolkit import prompt
 
 def updateCredentials(file_password):
     SERVER, PORT, USER, PASSWORD = functions.parseCredentials(pwd=file_password)
@@ -66,14 +67,11 @@ def sendTUI(pwd):
     print("Please enter your subject:")
     subject = input("> ")
 
-    print("Please enter your message content. If you have finished your text type \"!end!\":")
-    text = input("> ")
-    while True:
-        curr = input("> ")
-        if curr != "!end!":
-            text += curr+"\n"
-        else:
-            break
+    print("Please enter your message content. If you have finished your text press ALT + ENTER:")
+    from prompt_toolkit import prompt
+
+    text = prompt('> ', multiline=True,
+           prompt_continuation=functions.prompt_continuation)
 
     send(addr_to=receiver, subject=subject, message=text, password=pwd)
 
