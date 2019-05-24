@@ -11,8 +11,8 @@ from prompt_toolkit.styles import Style
 from prompt_toolkit.shortcuts import input_dialog
 import rainbow
 import sys
+import getTerminalSize as gts
 
-TERMINAL_SIZE = 78
 
 default_style = Style.from_dict({
     'rprompt': 'bg:#fff #000',
@@ -86,6 +86,7 @@ def sendTUI(pwd):
     return
 
 def start():
+    TERMINAL_SIZE = gts.get_terminal_size()[0]
     pwd = input_dialog(title='LOGIN', text='Please enter the password for the mail-client:', password=True)
     working = False
     if not pwd or len(pwd) <= 1:
@@ -112,7 +113,8 @@ def start():
             rainbow.main()
         else:
             functions.printInRed("I can't understand this")
-        functions.makeMenu()
+        TERMINAL_SIZE = gts.get_terminal_size()[0]
+        functions.makeMenu(TERMINAL_SIZE=TERMINAL_SIZE)
         select = input("> ")
     functions.printInBlue("#"*TERMINAL_SIZE)
     functions.printInBlue("#{0:^{1}}#".format("Goodbye!", TERMINAL_SIZE-2))

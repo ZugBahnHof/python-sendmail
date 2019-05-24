@@ -5,7 +5,6 @@ from prompt_toolkit import print_formatted_text, HTML, prompt
 from prompt_toolkit.validation import Validator, ValidationError
 import encryption
 import re
-#from tui import TERMINAL_SIZE
 
 def parseCredentials(pwd, file="secret_credentials.json"):
     jsondec = JSONDecoder()
@@ -49,9 +48,12 @@ def makeMenu(TERMINAL_SIZE):
     print("|", "–" * (TERMINAL_SIZE-2), "|", sep="")
     print("|{0:<{1}}|".format("Choose your option:", TERMINAL_SIZE-2))
     halfSize = int((TERMINAL_SIZE-2)/2)
-    print("|{0:<{1}}{2:>{3}}|".format("[S]end a mail", halfSize, "[L]ist 10 newest mails", halfSize), sep="")
-    print("|{0:<{1}}{2:>{3}}|".format("[U]pdate credentials", halfSize, "[Q]uit", halfSize), sep="")
-    lnDn =
+    if TERMINAL_SIZE % 2 == 1:
+        halfSize2 = halfSize + 1
+    else:
+        halfSize2 = halfSize
+    print("|{0:<{1}}{2:>{3}}|".format("[S]end a mail", halfSize, "[L]ist 10 newest mails", halfSize2), sep="")
+    print("|{0:<{1}}{2:>{3}}|".format("[U]pdate credentials", halfSize, "[Q]uit", halfSize2), sep="")
     print("|", "_" * (TERMINAL_SIZE-2), "|", sep="")
     return
 
