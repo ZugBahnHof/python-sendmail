@@ -10,6 +10,7 @@ from prompt_toolkit import prompt, print_formatted_text, HTML
 from prompt_toolkit.styles import Style
 from prompt_toolkit.shortcuts import input_dialog
 import rainbow
+import sys
 
 default_style = Style.from_dict({
     'rprompt': 'bg:#fff #000',
@@ -85,6 +86,8 @@ def sendTUI(pwd):
 def start():
     pwd = input_dialog(title='LOGIN', text='Please enter the password for the mail-client:', password=True)
     working = False
+    if len(pwd) <= 1:
+        sys.exit()
     while not working:
         try:
             encryption.decrypt(pwd)
@@ -92,6 +95,8 @@ def start():
         except:
             pwd = input_dialog(title='LOGIN', text='Your password was incorrect! Please try again::', password=True)
             working = False
+            if len(pwd) <= 1:
+                sys.exit()
     functions.makeMenu()
     select = input("> ")
     while select not in "qQ":
