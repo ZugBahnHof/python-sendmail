@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 # Not a real TUI, just a bunch of prints and inputs
 from sendmail import send
 from receivemail import getMails
