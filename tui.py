@@ -6,12 +6,15 @@ import re
 import functions
 import getpass
 import encryption
-from prompt_toolkit import prompt
+from prompt_toolkit import prompt, print_formatted_text, HTML
 from prompt_toolkit.styles import Style
 import rainbow
 
 default_style = Style.from_dict({
     'rprompt': 'bg:#fff #000',
+})
+style = Style.from_dict({
+    "wbg": "bg:#fff #000",
 })
 
 def updateCredentials(file_password):
@@ -67,8 +70,8 @@ def sendTUI(pwd):
     receiver = prompt("> ", validator=functions.validateEmail())
     print("Please enter your subject:")
     subject = input("> ")
-
-    print("Please enter your message content. If you have finished your text press ALT + ENTER:")
+    print_formatted_text(HTML('Please enter your message content. If you have finished your text press <wbg>ALT</wbg> + <wbg>ENTER</wbg>:'), style=style)
+    print("")
 
     text = prompt('> ', multiline=True,
            prompt_continuation=functions.prompt_continuation)
