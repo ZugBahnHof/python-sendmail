@@ -74,7 +74,7 @@ def sendTUI(pwd):
     print("")
 
     text = prompt('> ', multiline=True,
-           prompt_continuation=functions.prompt_continuation)
+           prompt_continuation=functions.prompt_continuation, mouse_support=True)
 
     send(addr_to=receiver, subject=subject, message=text, password=pwd)
 
