@@ -86,16 +86,16 @@ def sendTUI(pwd):
 def start():
     pwd = input_dialog(title='LOGIN', text='Please enter the password for the mail-client:', password=True)
     working = False
-    if len(pwd) <= 1:
+    if not pwd or len(pwd) <= 1:
         sys.exit()
     while not working:
         try:
             encryption.decrypt(pwd)
             working = True
         except:
-            pwd = input_dialog(title='LOGIN', text='Your password was incorrect! Please try again::', password=True)
+            pwd = input_dialog(title='LOGIN', text='Your password was incorrect! Please try again:', password=True)
             working = False
-            if len(pwd) <= 1:
+            if not pwd or len(pwd) <= 1:
                 sys.exit()
     functions.makeMenu()
     select = input("> ")
