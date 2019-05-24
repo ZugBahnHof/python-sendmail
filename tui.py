@@ -12,6 +12,8 @@ from prompt_toolkit.shortcuts import input_dialog
 import rainbow
 import sys
 
+TERMINAL_SIZE = 78
+
 default_style = Style.from_dict({
     'rprompt': 'bg:#fff #000',
 })
@@ -97,7 +99,7 @@ def start():
             working = False
             if not pwd or len(pwd) <= 1:
                 sys.exit()
-    functions.makeMenu()
+    functions.makeMenu(TERMINAL_SIZE=TERMINAL_SIZE)
     select = input("> ")
     while select not in "qQ":
         if select in "sS":
@@ -112,9 +114,9 @@ def start():
             functions.printInRed("I can't understand this")
         functions.makeMenu()
         select = input("> ")
-    functions.printInBlue("#"*44)
-    functions.printInBlue("#{:^42}#".format("Goodbye!"))
-    functions.printInBlue("#"*44)
+    functions.printInBlue("#"*TERMINAL_SIZE)
+    functions.printInBlue("#{0:^{1}}#".format("Goodbye!", TERMINAL_SIZE-2))
+    functions.printInBlue("#"*TERMINAL_SIZE)
 
 if __name__ == "__main__":
     start()

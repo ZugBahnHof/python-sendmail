@@ -5,6 +5,7 @@ from prompt_toolkit import print_formatted_text, HTML, prompt
 from prompt_toolkit.validation import Validator, ValidationError
 import encryption
 import re
+#from tui import TERMINAL_SIZE
 
 def parseCredentials(pwd, file="secret_credentials.json"):
     jsondec = JSONDecoder()
@@ -40,14 +41,18 @@ def parseEmailHeader(subject="=?utf-8?b?U291bmTigJhuIGxpZ2h0?="):
 def deletSpaces(string=""):
     return " ".join(string.split())
 
-def makeMenu():
-    print("|", "⎺" * 42, "|", sep="")
-    print("|", "{:^40}".format("Welcome to this commandline mailclient!"), "|")
-    print("|", "–" * 42, "|", sep="")
-    print("|{:<42}|".format("Choose your option:"))
-    print("|{:<20}".format("[S]end a mail"), "{:>22}|".format("[L]ist 10 newest mails"), sep="")
-    print("|{:<21}{:>21}|".format("[U]pdate credentials","[Q]uit"))
-    print("|", "_" * 42, "|", sep="")
+def makeMenu(TERMINAL_SIZE):
+    if type(TERMINAL_SIZE) is not int:
+        raise AttributeError("TERMINAL_SIZE has to be an integer")
+    print("|", "⎺" * (TERMINAL_SIZE-2), "|", sep="")
+    print("|", "{0:^{1}}".format("Welcome to this commandline mailclient!", (TERMINAL_SIZE-2)), "|", sep="")
+    print("|", "–" * (TERMINAL_SIZE-2), "|", sep="")
+    print("|{0:<{1}}|".format("Choose your option:", TERMINAL_SIZE-2))
+    halfSize = int((TERMINAL_SIZE-2)/2)
+    print("|{0:<{1}}{2:>{3}}|".format("[S]end a mail", halfSize, "[L]ist 10 newest mails", halfSize), sep="")
+    print("|{0:<{1}}{2:>{3}}|".format("[U]pdate credentials", halfSize, "[Q]uit", halfSize), sep="")
+    lnDn =
+    print("|", "_" * (TERMINAL_SIZE-2), "|", sep="")
     return
 
 def printInGreen(text=""):
