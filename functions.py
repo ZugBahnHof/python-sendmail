@@ -52,8 +52,8 @@ def makeMenu(TERMINAL_SIZE):
         halfSize2 = halfSize + 1
     else:
         halfSize2 = halfSize
-    print("|{0:<{1}}{2:>{3}}|".format("[S]end a mail", halfSize, "[L]ist 10 newest mails", halfSize2), sep="")
-    print("|{0:<{1}}{2:>{3}}|".format("[U]pdate credentials", halfSize, "[Q]uit", halfSize2), sep="")
+    print("|{0:<{1}}{2:<{3}}|".format("[S]end a mail", halfSize, "[L]ist 10 newest mails", halfSize2), sep="")
+    print("|{0:<{1}}{2:<{3}}|".format("[U]pdate credentials", halfSize, "[Q]uit", halfSize2), sep="")
     print("|", "_" * (TERMINAL_SIZE-2), "|", sep="")
     return
 
