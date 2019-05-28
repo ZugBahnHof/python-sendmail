@@ -73,7 +73,7 @@ class validateEmail(Validator):
     def validate(self, document):
         text = document.text
 
-        validation = re.match("\S+@\S+.\S+", text)
+        validation = re.match("\S+@\S+\.\S+", text)
 
         if not validation:
             raise ValidationError(message="This is not a valid E-Mail adress")
