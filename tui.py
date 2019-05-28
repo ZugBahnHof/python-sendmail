@@ -2,7 +2,7 @@
 # Not a real TUI, just a bunch of prints and inputs
 from sendmail import send
 from receivemail import getMails
-import re
+import os
 import functions
 import getpass
 import encryption
@@ -24,7 +24,7 @@ style = Style.from_dict({
 def updateCredentials(file_password):
     SERVER, PORT, USER, PASSWORD = functions.parseCredentials(pwd=file_password)
 
-    print("\n"*5)
+    os.system('clear')
     print("Change your credentials", end="\n"*2)
     print("Server")
     server = prompt('> ', rprompt="[default={}]".format(SERVER), style=default_style)
@@ -51,25 +51,25 @@ def updateCredentials(file_password):
     functions.changeCredentials(server=server, port=port, user=user, password=password, pwd=file_password)
 
     functions.printInGreen("Success")
-    print("\n"*5)
+    os.system('clear')
 
     return
 
 def showMails(pwd):
     print("The newest 10 Mails are displayed.")
-    print("\n"*5)
+    os.system('clear')
     print("Your mails are gonna be displayed now...")
     mails = getMails(pwd=pwd, count=10)
 
     for mail in mails:
         print("*", mail)
     input("[Press Enter to continue]")
-    print("\n"*5)
+    os.system('clear')
     return
 
 
 def sendTUI(pwd):
-    print("\n"*5)
+    os.system('clear')
     print("Please enter your receiver:")
     receiver = prompt("> ", validator=functions.validateEmail())
     print("Please enter your subject:")
@@ -82,7 +82,7 @@ def sendTUI(pwd):
 
     send(addr_to=receiver, subject=subject, message=text, password=pwd)
 
-    print("\n"*5)
+    os.system('clear')
     return
 
 def start():
@@ -100,6 +100,7 @@ def start():
             working = False
             if not pwd or len(pwd) <= 1:
                 sys.exit()
+    os.system('clear')
     functions.makeMenu(TERMINAL_SIZE=TERMINAL_SIZE)
     select = input("> ")
     while select not in "qQ":
@@ -116,6 +117,7 @@ def start():
         TERMINAL_SIZE = gts.get_terminal_size()[0]
         functions.makeMenu(TERMINAL_SIZE=TERMINAL_SIZE)
         select = input("> ")
+    os.system('clear')
     functions.printInBlue("#"*TERMINAL_SIZE)
     functions.printInBlue("#{0:^{1}}#".format("Goodbye!", TERMINAL_SIZE-2))
     functions.printInBlue("#"*TERMINAL_SIZE)
