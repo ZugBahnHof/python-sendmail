@@ -55,7 +55,8 @@ def makeMenu(TERMINAL_SIZE):
     else:
         halfSize2 = halfSize
     print("|{0:<{1}}{2:<{3}}|".format("[S]end a mail 📨", halfSize, "[L]ist 10 newest mails 🗒️", halfSize2), sep="")
-    print("|{0:<{1}}{2:<{3}}|".format("[U]pdate credentials 🔐", halfSize, "[Q]uit 📴", halfSize2-2), sep="")
+    print("|{0:<{1}}{2:<{3}}|".format("[U]pdate credentials 🔐", halfSize, "[A]dress book 📕", halfSize2-2), sep="")
+    print("|{0:<{1}}{2:<{3}}|".format("[Q]uit 📴", halfSize, "", halfSize2-1))
     print("|", "_" * (TERMINAL_SIZE-2), "|", sep="")
     return
 
@@ -95,5 +96,20 @@ class validateFilePath(Validator):
             raise ValidationError(message="That's a directory, not a file!")
         else:
             raise ValidationError(message="This file does not exist!")
+
+class validateNumberUnderX(Validator):
+    def __init__(self, X:int):
+        self.x = X
+    def validate(self, document):
+        text = document.text
+
+        try:
+            number_from_text = int(text)
+            if 0 <= number_from_text <= self.x:
+                pass
+            else:
+                raise ValidationError(message="The number is too high or too low!")
+        except ValueError:
+            raise ValidationError(message="{num} is not an number!".format(num=text))
 
 HOME = expanduser("~")

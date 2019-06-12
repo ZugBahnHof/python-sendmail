@@ -18,6 +18,7 @@ try: os.remove("data.aes")
 except: pass
 
 f = open(functions.HOME + "/.sendmail_mailinglist", "w")
+f.write("+mail@example.org\n")
 f.close()
 
 print("Choose your password for this mailclient")

@@ -58,6 +58,53 @@ def updateCredentials(file_password):
 
     return
 
+def addressBookTUI():
+    os.system("clear")
+    print("This is your address book:")
+    addressBook = open(functions.HOME + "/.sendmail_mailinglist")
+    lines = addressBook.read().split("\n")
+    addressBook.close()
+    addresses = []
+
+    for address in lines:
+        if address.startswith("+"):
+            print("· " + address[1:])
+            addresses.append(address[1:])
+
+    print("Do you want to [d]elete an address, [a]dd another one, or do nothing (write something else)?")
+    selection = prompt("> ")
+
+    if selection == "":
+        pass
+    elif selection in "dD":
+        print("Which address do you want to delete?")
+
+        for i, j in enumerate(addresses):
+            print("{i}: {j}".format(i=i, j=j))
+
+        deleter = prompt("> ", validator=functions.validateNumberUnderX(X=i))
+
+        tmp_addresses = set(["+"+a for a in [addresses[int(deleter)]]])
+        print(tmp_addresses)
+
+        new_addresses = set(lines)-tmp_addresses
+
+        addressBook = open(functions.HOME + "/.sendmail_mailinglist", "w")
+        for address in new_addresses:
+            addressBook.write("{addr}\n".format(addr=address))
+        addressBook.close()
+
+    elif selection in "aA":
+        print("Type in the address to add:")
+        addr_to_add = prompt("> ", validator=functions.validateEmail())
+
+        addressBook = open(functions.HOME + "/.sendmail_mailinglist", "a")
+        addressBook.write("+{addr}\n".format(addr=addr_to_add))
+        addressBook.close()
+
+    os.system("clear")
+    return
+
 def showMails(pwd):
     print("The newest 10 Mails are displayed.")
     os.system('clear')
@@ -125,6 +172,8 @@ def start():
             updateCredentials(pwd)
         elif select in "rR":
             rainbow.main()
+        elif select in "aA":
+            addressBookTUI()
         else:
             functions.printInRed("I can't understand this")
         TERMINAL_SIZE = gts.get_terminal_size()[0]
