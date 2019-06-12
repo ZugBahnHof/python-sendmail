@@ -5,6 +5,7 @@ from prompt_toolkit import print_formatted_text, HTML, prompt
 from prompt_toolkit.validation import Validator, ValidationError
 import encryption
 import re
+import os
 
 def parseCredentials(pwd, file="secret_credentials.json"):
     jsondec = JSONDecoder()
@@ -77,3 +78,19 @@ class validateEmail(Validator):
 
         if not validation:
             raise ValidationError(message="This is not a valid E-Mail adress")
+
+class validateFilePath(Validator):
+    def validate(self, document):
+        text = document.text
+
+        # if len(text) < 6:
+        #     raise ValidationError("The file path is too short!")
+        if not text.startswith("/"):
+            raise ValidationError(message="This is not a valid file path!")
+        elif os.path.isfile(text):
+            # we want that!
+            pass
+        elif os.path.isdir(text):
+            raise ValidationError(message="That's a directory, not a file!")
+        else:
+            raise ValidationError(message="This file does not exist!")
