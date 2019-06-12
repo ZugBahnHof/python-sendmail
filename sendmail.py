@@ -20,6 +20,7 @@ def send(password, addr_to="", subject="", message="", filename=None):
     if len(addr_to) > 0 and len(subject) > 0 and len(message) > 0:
         pass
     else:
+        print(addr_to, subject, message, filename)
         raise AttributeError("Receiver, subject and message must be given!")
 
     SERVER, PORT, USER, PASSWORD = functions.parseCredentials(pwd=password)
@@ -37,7 +38,7 @@ def send(password, addr_to="", subject="", message="", filename=None):
 
         # Open PDF file in binary mode
         with open(filename, "rb") as attachment:
-            print("Opening attachment file…")
+            print("Opening attachment file ({file})…".format(file=filename))
             # Add file as application/octet-stream
             # Email client can usually download this automatically as attachment
             part = MIMEBase("application", "octet-stream")
@@ -49,7 +50,7 @@ def send(password, addr_to="", subject="", message="", filename=None):
         # Add header as key/value pair to attachment part
         part.add_header(
             "Content-Disposition",
-            f"attachment; filename= {filename}",
+            f"attachment; filename= {filename}".format(filename=filename.split("/")[-1]),
         )
         print("Adding attachment file to the email…")
 
