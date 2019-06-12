@@ -8,7 +8,7 @@ import getpass
 import encryption
 from prompt_toolkit import prompt, print_formatted_text, HTML
 from prompt_toolkit.styles import Style
-from prompt_toolkit.shortcuts import input_dialog
+from prompt_toolkit.shortcuts import input_dialog, confirm
 import rainbow
 import sys
 import getTerminalSize as gts
@@ -79,8 +79,14 @@ def sendTUI(pwd):
 
     text = prompt('> ', multiline=True,
            prompt_continuation=functions.prompt_continuation, mouse_support=True)
+    attachment = confirm("Do you want to add one attachment to the email?")
+    if attachment:
+        print_formatted_text(HTML("Please enter the whole filepath to your attachment file. For example: <ansigreen>/home/lolo/documents/test.pdf</ansigreen>"))
+        filepath = prompt("> ", validator=functions.validateFilePath())
+    else:
+        filepath = None
 
-    send(addr_to=receiver, subject=subject, message=text, password=pwd)
+    send(addr_to=receiver, subject=subject, message=text, password=pwd, filename=filepath)
 
     os.system('clear')
     return
