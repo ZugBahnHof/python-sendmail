@@ -17,6 +17,9 @@ validator = Validator.from_callable(
 try: os.remove("data.aes")
 except: pass
 
+f = open(functions.HOME + "/.sendmail_mailinglist", "w")
+f.close()
+
 print("Choose your password for this mailclient")
 functions.printInRed("Warning! This password can't be changed!")
 

@@ -6,6 +6,7 @@ from prompt_toolkit.validation import Validator, ValidationError
 import encryption
 import re
 import os
+from os.path import expanduser
 
 def parseCredentials(pwd, file="secret_credentials.json"):
     jsondec = JSONDecoder()
@@ -94,3 +95,5 @@ class validateFilePath(Validator):
             raise ValidationError(message="That's a directory, not a file!")
         else:
             raise ValidationError(message="This file does not exist!")
+
+HOME = expanduser("~")

@@ -12,6 +12,9 @@ from prompt_toolkit.shortcuts import input_dialog, confirm
 import rainbow
 import sys
 import getTerminalSize as gts
+from prompt_toolkit import PromptSession
+from prompt_toolkit.history import FileHistory
+from prompt_toolkit.auto_suggest import AutoSuggestFromHistory
 
 
 default_style = Style.from_dict({
@@ -70,8 +73,12 @@ def showMails(pwd):
 
 def sendTUI(pwd):
     os.system('clear')
-    print("Please enter your receiver:")
-    receiver = prompt("> ", validator=functions.validateEmail())
+
+    session = PromptSession(history=FileHistory(functions.HOME + '/.sendmail_mailinglist'))
+
+    print_formatted_text(HTML('Please enter your receiver (if you get suggested adresses, just press <wbg>→ </wbg>:'),
+                         style=style)
+    receiver = session.prompt("> ", validator=functions.validateEmail(), auto_suggest=AutoSuggestFromHistory())
     print("Please enter your subject:")
     subject = input("> ")
     print_formatted_text(HTML('Please enter your message content. If you have finished your text press <wbg>ALT</wbg> + <wbg>ENTER</wbg>:'), style=style)
