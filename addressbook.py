@@ -1,3 +1,5 @@
+import functions
+
 def getAddresses():
     addressBook = open(functions.HOME + "/.sendmail_mailinglist")
     lines = addressBook.read().split("\n")
