@@ -16,6 +16,10 @@ import getTerminalSize as gts
 from prompt_toolkit import PromptSession
 from prompt_toolkit.history import FileHistory
 from prompt_toolkit.auto_suggest import AutoSuggestFromHistory
+from prompt_toolkit.completion.filesystem import PathCompleter
+
+# SQLCompleter = WordCompleter(['select', 'from', 'insert', 'update', 'delete', 'drop'],
+#                              ignore_case=True)
 
 
 default_style = Style.from_dict({
@@ -118,7 +122,7 @@ def sendTUI(pwd):
     attachment = confirm("Do you want to add one attachment to the email?")
     if attachment:
         print_formatted_text(HTML("Please enter the whole filepath to your attachment file. For example: <ansigreen>/home/lolo/documents/test.pdf</ansigreen>"))
-        filepath = prompt("> ", validator=functions.validateFilePath())
+        filepath = prompt("> ", validator=functions.validateFilePath(), completer=PathCompleter())
     else:
         filepath = None
 
