@@ -26,7 +26,7 @@ def send(password, addr_to="", subject="", message="", filename=None, addr_from=
 
     # Create a multipart message and set headers
     msg = MIMEMultipart()
-    msg["From"] = USER or addr_from
+    msg["From"] = USER if not addr_from else addr_from
     msg["To"] = addr_to
     msg["Subject"] = subject
 
