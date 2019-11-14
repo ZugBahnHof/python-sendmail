@@ -1,6 +1,7 @@
 import os
 import pyAesCrypt
 
+
 def encrypt(text, password):
     bufferSize = 64 * 1024
     # write text to a temp file
@@ -13,6 +14,7 @@ def encrypt(text, password):
     os.remove("data.txt")
 
     return
+
 
 def decrypt(password):
     bufferSize = 64 * 1024

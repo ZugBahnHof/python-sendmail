@@ -1,5 +1,6 @@
 import functions
 
+
 def getAddresses():
     addressBook = open(functions.HOME + "/.sendmail_mailinglist")
     lines = addressBook.read().split("\n")
@@ -10,6 +11,7 @@ def getAddresses():
         if address.startswith("+"):
             addresses.append(address[1:])
     return addresses
+
 
 def printAddresses(numbering):
     if numbering not in ["numbers", "middle-dot", "minus-sign"]:
@@ -32,7 +34,8 @@ def printAddresses(numbering):
             print(numbering, line, sep="")
     return True
 
-def removeAddress(i:int):
+
+def removeAddress(i: int):
     addresses = getAddresses()
     tmp_addresses = ["+" + addresses[i]]
 
@@ -44,6 +47,7 @@ def removeAddress(i:int):
     addressBook.close()
 
     return True
+
 
 def addAddress(address):
     addressBook = open(functions.HOME + "/.sendmail_mailinglist", "a")

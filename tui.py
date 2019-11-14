@@ -29,11 +29,12 @@ style = Style.from_dict({
     "wbg": "bg:#fff #000",
 })
 
+
 def updateCredentials(file_password):
     SERVER, PORT, USER, PASSWORD = functions.parseCredentials(pwd=file_password)
 
     os.system('clear')
-    print("Change your credentials", end="\n"*2)
+    print("Change your credentials", end="\n" * 2)
     print("Server")
     server = prompt('> ', rprompt="[default={}]".format(SERVER), style=default_style)
     server = server or SERVER
@@ -63,6 +64,7 @@ def updateCredentials(file_password):
 
     return
 
+
 def addressBookTUI():
     os.system("clear")
     print("This is your address book:")
@@ -91,6 +93,7 @@ def addressBookTUI():
     os.system("clear")
     return
 
+
 def showMails(pwd):
     print("The newest 10 Mails are displayed.")
     os.system('clear')
@@ -114,14 +117,17 @@ def sendTUI(pwd):
     receiver = session.prompt("> ", validator=functions.validateEmail(), auto_suggest=AutoSuggestFromHistory())
     print("Please enter your subject:")
     subject = input("> ")
-    print_formatted_text(HTML('Please enter your message content. If you have finished your text press <wbg>ALT</wbg> + <wbg>ENTER</wbg>:'), style=style)
+    print_formatted_text(HTML(
+        'Please enter your message content. If you have finished your text press <wbg>ALT</wbg> + <wbg>ENTER</wbg>:'),
+                         style=style)
     print("")
 
     text = prompt('> ', multiline=True,
-           prompt_continuation=functions.prompt_continuation, mouse_support=True)
+                  prompt_continuation=functions.prompt_continuation, mouse_support=True)
     attachment = confirm("Do you want to add one attachment to the email?")
     if attachment:
-        print_formatted_text(HTML("Please enter the whole filepath to your attachment file. For example: <ansigreen>/home/lolo/documents/test.pdf</ansigreen>"))
+        print_formatted_text(HTML(
+            "Please enter the whole filepath to your attachment file. For example: <ansigreen>/home/lolo/documents/test.pdf</ansigreen>"))
         filepath = prompt("> ", validator=functions.validateFilePath(), completer=PathCompleter())
     else:
         filepath = None
@@ -130,6 +136,7 @@ def sendTUI(pwd):
 
     os.system('clear')
     return
+
 
 def start():
     TERMINAL_SIZE = gts.get_terminal_size()[0]
@@ -166,9 +173,10 @@ def start():
         functions.makeMenu(TERMINAL_SIZE=TERMINAL_SIZE)
         select = input("> ")
     os.system('clear')
-    functions.printInBlue("#"*TERMINAL_SIZE)
-    functions.printInBlue("#{0:^{1}}#".format("Goodbye!", TERMINAL_SIZE-2))
-    functions.printInBlue("#"*TERMINAL_SIZE)
+    functions.printInBlue("#" * TERMINAL_SIZE)
+    functions.printInBlue("#{0:^{1}}#".format("Goodbye!", TERMINAL_SIZE - 2))
+    functions.printInBlue("#" * TERMINAL_SIZE)
+
 
 if __name__ == "__main__":
     start()

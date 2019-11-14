@@ -7,6 +7,7 @@ from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
+
 # subject = "An email with attachment from Python"
 # body = "This is an email with attachment sent from Python"
 # sender_email = "my@gmail.com"
@@ -14,9 +15,7 @@ from email.mime.text import MIMEText
 # password = input("Type your password and press enter:")
 
 
-
-def send(password, addr_to="", subject="", message="", filename=None):
-
+def send(password, addr_to="", subject="", message="", filename=None, addr_from=""):
     if len(addr_to) > 0 and len(subject) > 0:
         pass
     else:
@@ -27,7 +26,7 @@ def send(password, addr_to="", subject="", message="", filename=None):
 
     # Create a multipart message and set headers
     msg = MIMEMultipart()
-    msg["From"] = USER
+    msg["From"] = USER or addr_from
     msg["To"] = addr_to
     msg["Subject"] = subject
 
@@ -35,7 +34,6 @@ def send(password, addr_to="", subject="", message="", filename=None):
     msg.attach(MIMEText(message, "plain"))
 
     if filename is not None:
-
         # Open PDF file in binary mode
         with open(filename, "rb") as attachment:
             print("Opening attachment file ({file})…".format(file=filename))
@@ -58,7 +56,6 @@ def send(password, addr_to="", subject="", message="", filename=None):
         msg.attach(part)
 
     text = msg.as_string()
-
 
     connection = smtplib.SMTP(host=SERVER, port=PORT)
     connection.starttls()
