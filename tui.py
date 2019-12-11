@@ -159,14 +159,19 @@ def start():
     while select not in "qQ":
         if select in "sS":
             sendTUI(pwd=pwd)
+            os.system('clear')
         elif select in "lL":
             showMails(pwd=pwd)
+            os.system('clear')
         elif select in "uU":
             updateCredentials(pwd)
+            os.system('clear')
         elif select in "rR":
             rainbow.main()
+            os.system('clear')
         elif select in "aA":
             addressBookTUI()
+            os.system('clear')
         else:
             functions.printInRed("I can't understand this")
         TERMINAL_SIZE = gts.get_terminal_size()[0]
